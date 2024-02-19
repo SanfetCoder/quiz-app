@@ -1,17 +1,17 @@
-import { View, Text, SafeAreaView, StyleSheet } from "react-native";
+import { View, Text, SafeAreaView, StyleSheet, ScrollView } from "react-native";
 import CategoryButton from "../components/CategoryButton";
 
 const Home = () => {
   const categories = ["All","Science","Programming","Mathematics"];
   return (
     <SafeAreaView>
-      <View style={styles.categoryList}>
+      <ScrollView horizontal style={styles.categoryList}>
         {
           categories.map((category)=>{
             return <CategoryButton key={category} title={category}/>
           })
         }
-      </View>
+      </ScrollView>
     </SafeAreaView>
   )
 }
@@ -22,7 +22,7 @@ const styles = StyleSheet.create({
     flexDirection : 'row',
     columnGap : 10,
     marginVertical : 10,
-    marginLeft : 10
+    marginLeft : 10,
   }
 })
 

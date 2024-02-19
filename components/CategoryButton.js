@@ -15,12 +15,14 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: 'black',
     borderRadius: 50,
-    padding: 10,
     minWidth : 50,
-    height: 40,
+    height: 30,
     flexDirection : 'row',
     justifyContent : 'center',
-    borderWidth : 1.5
+    alignItems : 'center',
+    borderWidth : 1.5,
+    paddingHorizontal : 10,
+    marginRight : 10
   },
   content : {
     fontSize : 14,
