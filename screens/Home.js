@@ -9,7 +9,7 @@ const Home = () => {
       <ScrollView horizontal style={styles.categoryList} showsHorizontalScrollIndicator={false} showsVerticalScrollIndicator={false}>
         {
           categories.map((category)=>{
-            return <CategoryButton key={category} title={category}/>
+            return <CategoryButton onPress={()=>setSelectedCategory(category)} isActive={category === selectedCategory} key={category} title={category}/>
           })
         }
       </ScrollView>

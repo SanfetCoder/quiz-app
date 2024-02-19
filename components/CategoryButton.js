@@ -1,10 +1,21 @@
 import {StyleSheet, TouchableWithoutFeedback, Text, View} from "react-native"
 
-const CategoryButton = ({title}) => {
+const CategoryButton = ({title, isActive, onPress}) => {
   return (
-    <TouchableWithoutFeedback>
-      <View style={styles.border}>
-        <Text style={styles.content}>{title}</Text>
+    <TouchableWithoutFeedback onPress={onPress}>
+      <View 
+        style={{
+          ...styles.border,
+          backgroundColor : isActive ? '#0029FF' : 'transparent'
+        }}
+        >
+        <Text 
+          style={{
+            ...styles.content,
+            color : isActive ? 'white' : '#0029FF'
+          }}>
+            {title}
+          </Text>
       </View>
     </TouchableWithoutFeedback>
   )
@@ -22,12 +33,11 @@ const styles = StyleSheet.create({
     alignItems : 'center',
     borderWidth : 1.5,
     paddingHorizontal : 10,
-    marginRight : 10
+    marginRight : 15
   },
   content : {
     fontSize : 14,
-    fontWeight : '500',
-    color : '#0029FF'
+    fontWeight : '500'
   }
 })
 
