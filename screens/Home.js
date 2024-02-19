@@ -22,7 +22,7 @@ const styles = StyleSheet.create({
     display : 'flex',
     flexDirection : 'row',
     columnGap : 10,
-    marginVertical : 10,
+    marginVertical : 20,
     marginLeft : 10,
   }
 })
