@@ -5,7 +5,7 @@ const Home = () => {
   const categories = ["All","Science","Programming","Mathematics"];
   return (
     <SafeAreaView>
-      <ScrollView horizontal style={styles.categoryList}>
+      <ScrollView horizontal style={styles.categoryList} showsHorizontalScrollIndicator={false} showsVerticalScrollIndicator={false}>
         {
           categories.map((category)=>{
             return <CategoryButton key={category} title={category}/>
