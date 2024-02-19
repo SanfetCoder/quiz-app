@@ -13,7 +13,7 @@ const CategoryButton = ({title}) => {
 const styles = StyleSheet.create({
   border: {
     borderWidth: 1,
-    borderColor: 'black',
+    borderColor: '#0029FF',
     borderRadius: 50,
     minWidth : 50,
     height: 30,
@@ -26,7 +26,8 @@ const styles = StyleSheet.create({
   },
   content : {
     fontSize : 14,
-    fontWeight : '500'
+    fontWeight : '500',
+    color : '#0029FF'
   }
 })
 
