@@ -73,6 +73,7 @@ const Timer = ({ onFinish }) => {
 
     animateBackground();
 
+    // Clear up funciton
     return () => clearInterval(timer);
   }, [onFinish, animation]);
 
@@ -151,19 +152,54 @@ const Quiz = () => {
       <View
         style={{
           height : '100%',
+          width : '60%',
           display : 'flex',
           flexDirection : 'column',
           justifyContent : 'center'
         }}
       >
-        <Text
+        <View
           style={{
-            color : 'white',
-            fontSize : 30
+            width : '100%',
+            height : '30%',
+            paddingVertical : '10%',
+            backgroundColor : 'white',
+            borderRadius : 15,
+            display : 'flex',
+            flexDirection : 'column',
+            justifyContent : 'space-between',
+            alignItems : 'center'
           }}
         >
-          {currentScore} / {maxScore}
-        </Text>
+          <Text
+              style={{
+                color : '#C735B5',
+                fontSize : 50,
+                fontWeight : '700'
+              }}
+            >
+              {currentScore}
+          </Text>
+          <LinearGradient
+            style={{
+            width : '90%',
+            height : 10,
+            borderRadius : 20
+            }}
+            colors={['#C735B5', '#DC3757']}
+          >
+            
+          </LinearGradient>
+          <Text
+              style={{
+                color : '#C735B5',
+                fontSize : 50,
+                fontWeight : '700'
+              }}
+            >
+              {maxScore}
+            </Text>
+        </View>
       </View>
     )
   }
