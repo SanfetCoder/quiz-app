@@ -2,8 +2,22 @@ import React from 'react'
 import { SafeAreaView , StyleSheet, View, Text, ScrollView} from 'react-native'
 import ProfileCard from '../components/ProfileCard'
 import { quizzes } from '../models/quiz'
+import { createStackNavigator } from '@react-navigation/stack';
+
+const Stack = createStackNavigator();
 
 const Profile = () => {
+  return (
+    <Stack.Navigator screenOptions={{ headerShown : true}}>
+      <Stack.Screen 
+        name="Profile"
+        component={ProfileMain}
+      />
+    </Stack.Navigator>
+  )
+}
+
+const ProfileMain = () => {
   return (
     <SafeAreaView style={styles.container}>
       <ProfileCard />

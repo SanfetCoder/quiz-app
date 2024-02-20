@@ -27,7 +27,7 @@ export default function App() {
           }}
           />
         <Tab.Screen 
-          name="Profile" 
+          name="Profile Wrapper" 
           component={Profile} 
           options={{
             title : 'Profile',

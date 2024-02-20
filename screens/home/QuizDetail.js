@@ -9,7 +9,6 @@ const QuizDetail = () => {
   const fetchedQuiz = fetchQuizByName(selectedQuiz)
   return (
     <View style={styles.container}>
-      
       <Image 
         style={{
           width : '100%',
