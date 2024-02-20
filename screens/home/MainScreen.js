@@ -1,28 +1,34 @@
-import { useState } from "react";
-import { Text, SafeAreaView, StyleSheet, ScrollView, View, Image, Button } from "react-native";
+import { useContext, useState } from "react";
+import { Text, SafeAreaView, StyleSheet, ScrollView, View, Image, Button, TouchableOpacity } from "react-native";
 import CategoryButton from "../../components/CategoryButton";
 import { quizzes } from "../../models/quiz";
 import Section from "../../components/Section";
+import { MainScreenContext } from "../../context/MainScreenProvider";
+import { HomeContext } from "../../context/HomeProvider";
 
 const MainScreen = ({route}) => {
-  const {selectedQuiz} = route.params;
+  const {selectedQuiz, handleSelectQuiz} = useContext(HomeContext);
   const categories = ["All","Science","Programming","Mathematics"];
   const [selectedCategory, setSelectedCategory] = useState('');
 
   return (
     <SafeAreaView style={styles.container}>
-      <Text>{selectedQuiz}</Text>
-      <View>
-        <ScrollView horizontal style={styles.categoryList} showsHorizontalScrollIndicator={false} showsVerticalScrollIndicator={false}>
-          {
-            categories.map((category)=>{
-              return <CategoryButton onPress={()=>setSelectedCategory(category)} isActive={category === selectedCategory} key={category} title={category}/>
-            })
-          }
-        </ScrollView>
-      </View>
-      <ForYouSection />
-      <AllSection />
+      <MainScreenContext.Provider 
+        value={{
+          handleSelectQuiz
+        }}>
+        <View>
+          <ScrollView horizontal style={styles.categoryList} showsHorizontalScrollIndicator={false} showsVerticalScrollIndicator={false}>
+            {
+              categories.map((category)=>{
+                return <CategoryButton onPress={()=>setSelectedCategory(category)} isActive={category === selectedCategory} key={category} title={category}/>
+              })
+            }
+          </ScrollView>
+        </View>
+        <ForYouSection />
+        <AllSection />
+      </MainScreenContext.Provider>
     </SafeAreaView>
   )
 }
@@ -52,8 +58,9 @@ const AllSection = () => {
 }
 
 const QuizItem = ({quiz}) => {
+  const {handleSelectQuiz} = useContext(MainScreenContext);
   return (
-    <View style={styles.quizItem}>
+    <TouchableOpacity onPress={()=>handleSelectQuiz(quiz.title)} style={styles.quizItem}>
       <Image 
         style={{
           width: 125,
@@ -62,7 +69,7 @@ const QuizItem = ({quiz}) => {
         }}
         source={quiz.image}
       />
-    </View>
+    </TouchableOpacity>
   )
 }
 
