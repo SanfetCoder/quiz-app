@@ -8,13 +8,15 @@ const Home = () => {
   const [selectedCategory, setSelectedCategory] = useState('');
   return (
     <SafeAreaView style={styles.container}>
-      <ScrollView horizontal style={styles.categoryList} showsHorizontalScrollIndicator={false} showsVerticalScrollIndicator={false}>
-        {
-          categories.map((category)=>{
-            return <CategoryButton onPress={()=>setSelectedCategory(category)} isActive={category === selectedCategory} key={category} title={category}/>
-          })
-        }
-      </ScrollView>
+      <View>
+        <ScrollView horizontal style={styles.categoryList} showsHorizontalScrollIndicator={false} showsVerticalScrollIndicator={false}>
+          {
+            categories.map((category)=>{
+              return <CategoryButton onPress={()=>setSelectedCategory(category)} isActive={category === selectedCategory} key={category} title={category}/>
+            })
+          }
+        </ScrollView>
+      </View>
       <ForYouSection />
     </SafeAreaView>
   )
@@ -62,7 +64,6 @@ const styles = StyleSheet.create({
   categoryList : {
     display : 'flex',
     flexDirection : 'row',
-    height : 100,
     columnGap : 10,
     marginVertical : 20,
     marginHorizontal : 10,
