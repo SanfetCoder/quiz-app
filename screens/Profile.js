@@ -1,6 +1,7 @@
 import React from 'react'
-import { SafeAreaView , StyleSheet, View, Text} from 'react-native'
+import { SafeAreaView , StyleSheet, View, Text, ScrollView} from 'react-native'
 import ProfileCard from '../components/ProfileCard'
+import { quizzes } from '../models/quiz'
 
 const Profile = () => {
   return (
@@ -17,7 +18,20 @@ const ActivityList = () => {
       <Text style={styles.header}>
         Activities
       </Text>
+      <Activities />
     </View>
+  )
+}
+
+const Activities = () => {
+  return (
+    <ScrollView>
+      {
+        quizzes.map(quiz => {
+          return <Text>{quiz.title}</Text>
+        })
+      }
+    </ScrollView>
   )
 }
 
