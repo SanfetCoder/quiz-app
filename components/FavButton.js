@@ -1,12 +1,15 @@
 import React from 'react'
 import { TouchableNativeFeedback, View } from 'react-native'
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
-const FavButton = () => {
+
+const FavButton = ({isActive, onPress}) => {
   return (
-    <TouchableNativeFeedback>
+    <TouchableNativeFeedback onPress={onPress}>
       <View 
         style={{
-          backgroundColor : 'red',
+          backgroundColor : isActive ? 'red' : 'transparent',
+          borderColor : isActive ? 'none' : 'red',
+          borderWidth : 2,
           height : 35,
           width : 35,
           display : 'flex',
@@ -17,7 +20,7 @@ const FavButton = () => {
         }}>
         <MaterialCommunityIcons
           style={{
-          color : 'white'
+          color : isActive ? "white" : "red"
           }}
           size={20} name="heart"/>
       </View>

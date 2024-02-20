@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React, { useContext, useState } from 'react'
 import { Image, StyleSheet, Text, View, TouchableNativeFeedback } from 'react-native'
 import { HomeContext } from '../../context/HomeProvider'
 import { fetchQuizByName } from '../../models/quiz';
@@ -42,6 +42,7 @@ const QuizDetail = () => {
 const Header = () => {
   const {selectedQuiz} = useContext(HomeContext)
   const fetchedQuiz = fetchQuizByName(selectedQuiz)
+  const [isLiked, setIsLiked] = useState(false)
   return (
     <View 
       style={{
@@ -53,7 +54,7 @@ const Header = () => {
         marginTop : 15
       }}>
       <Text style={styles.title}>{fetchedQuiz.title} quiz</Text>
-      <FavButton />
+      <FavButton onPress={()=>setIsLiked(prev => !prev)} isActive={isLiked}/>
     </View>
   )
 }
