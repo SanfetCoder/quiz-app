@@ -5,10 +5,10 @@ import { quizzes } from "../../models/quiz";
 import Section from "../../components/Section";
 import { useNavigation } from '@react-navigation/native';
 import { HomeContext } from "../../context/HomeProvider";
+import { categories } from "../../models/categories";
 
-const MainScreen = ({navigation}) => {
-  const categories = ["All","Science","Programming","Mathematics"];
-  const [selectedCategory, setSelectedCategory] = useState('');
+const MainScreen = () => {
+  const [selectedCategory, setSelectedCategory] = useState(categories[0]);
 
   return (
     <SafeAreaView style={styles.container}>

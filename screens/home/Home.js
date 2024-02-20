@@ -2,7 +2,6 @@ import { createStackNavigator } from '@react-navigation/stack';
 import MainScreen from "./MainScreen";
 import QuizDetail from './QuizDetail';
 import HomeProvider from '../../context/HomeProvider';
-import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
 const Stack = createStackNavigator();
 
