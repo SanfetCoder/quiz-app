@@ -26,7 +26,7 @@ const InQuiz = () => {
             display : 'flex',
             flexDirection : 'column',
             alignItems : 'center',
-            justifyContent : 'space-between'
+            justifyContent : 'space-between',
           }}>
             <NavBar />
             { didStart ? <Quiz /> : <Timer onFinish={handleUpdateStartTime}/>}
@@ -39,12 +39,12 @@ const InQuiz = () => {
 const Timer = ({onFinish}) => {
   const [currentTime, setCurentTime] = useState(5);
 
-  useEffect(()=>{
-    if (currentTime <= 0) return onFinish()
-    setTimeout(()=>{
-      setCurentTime(prev => prev - 1)
-    }, 1000)
-  },[currentTime])
+  // useEffect(()=>{
+  //   if (currentTime <= 0) return onFinish()
+  //   setTimeout(()=>{
+  //     setCurentTime(prev => prev - 1)
+  //   }, 1000)
+  // },[currentTime])
 
   return (
     <View
@@ -57,12 +57,26 @@ const Timer = ({onFinish}) => {
         justifyContent : 'center'
       }}
     >
+      <View
+      style={{
+        height : 120,
+        width : 120,
+        display : 'flex',
+        flexDirection : 'column',
+        alignItems : 'center',
+        justifyContent : 'center',
+        borderColor : 'red',
+        borderWidth : 5,
+        borderRadius : 100,
+      }}
+    >
       <Text
         style={{
           color : 'white',
-          fontSize : 40
+          fontSize : 40,
         }}
       >{currentTime}</Text>
+      </View>
     </View>
   )
 }
