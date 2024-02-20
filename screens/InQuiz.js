@@ -5,23 +5,76 @@ import { LinearGradient } from 'expo-linear-gradient';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import { useNavigation } from '@react-navigation/native';
 import { AppContext } from '../context/AppProvider';
+import { InQuizContext, InQuizProvider } from '../context/InQuizProvider';
 
 const InQuiz = () => {
   return (
-    <LinearGradient
-      colors={['#5224B7','#A248FF']}
-      >
-      <SafeAreaView
+    <InQuizProvider>
+      <LinearGradient
+        colors={['#5224B7','#A248FF']}
+        >
+        <SafeAreaView
+          style={{
+            height : '100%',
+            width : '100%',
+            display : 'flex',
+            flexDirection : 'column',
+            alignItems : 'center',
+            justifyContent : 'space-between'
+          }}>
+            <NavBar />
+            <Quiz />
+        </SafeAreaView>
+      </LinearGradient>
+    </InQuizProvider>
+  )
+}
+
+const Pagination = () => {
+  const {selectedQuiz} = useContext(AppContext);
+  const {currentQuestionIndex} = useContext(InQuizContext);
+  const maxQuestions = selectedQuiz.questions.length;
+  return (
+    <View>
+      <Text 
         style={{
-          height : '100%',
-          width : '100%',
-          display : 'flex',
-          flexDirection : 'column',
-          alignItems : 'center'
+          color : 'white',
+          fontSize : 15
+        }}
+        >
+        {currentQuestionIndex + 1} / {maxQuestions}
+      </Text>
+    </View>
+  )
+}
+
+const Quiz = () => {
+  const {selectedQuiz} = useContext(AppContext);
+  const {currentQuestionIndex} = useContext(InQuizContext);
+  return (
+    <View
+      style={{
+        height : '60%',
+        width : '100%',
+        display : 'flex',
+        flexDirection : 'column',
+        justifyContent : 'space-between',
+        alignItems : 'center'
+      }}
+    >
+      <Text 
+        style={{
+          color : 'white',
+          fontSize : 20,
+          fontWeight : '600',
+          textAlign : 'center',
+          width : '80%',
+          lineHeight : 30
         }}>
-          <NavBar />
-      </SafeAreaView>
-    </LinearGradient>
+        {selectedQuiz.questions[currentQuestionIndex].question}
+      </Text>
+      <Pagination />
+    </View>
   )
 }
 
@@ -56,7 +109,6 @@ const NavBar = () => {
           fontSize : 20,
         }}
       >{selectedQuiz.title}</Text>
-      <View></View>
     </View>
   )
 }
