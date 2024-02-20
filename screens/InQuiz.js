@@ -51,8 +51,33 @@ const Pagination = () => {
 
 const Quiz = () => {
   const {selectedQuiz} = useContext(AppContext);
-  const {currentQuestionIndex} = useContext(InQuizContext);
+  const {currentQuestionIndex, currentScore} = useContext(InQuizContext);
   const currentQuestion = selectedQuiz.questions[currentQuestionIndex];
+  const isQuizDone = currentQuestionIndex >= selectedQuiz.questions.length;
+  const maxScore = selectedQuiz.questions.length;
+
+  if (isQuizDone) {
+    return (
+      <View
+        style={{
+          height : '100%',
+          display : 'flex',
+          flexDirection : 'column',
+          justifyContent : 'center'
+        }}
+      >
+        <Text
+          style={{
+            color : 'white',
+            fontSize : 30
+          }}
+        >
+          {currentScore} / {maxScore}
+        </Text>
+      </View>
+    )
+  }
+
   return (
     <View
       style={{
@@ -112,14 +137,18 @@ const Choices = () =>{
 }
 
 const Choice = ({choice, title, circleColor}) => {
-  const {setCurrentQuestionIndex} = useContext(InQuizContext);
   const {selectedQuiz} = useContext(AppContext);
-  const {currentQuestionIndex} = useContext(InQuizContext);
+  const {currentQuestionIndex, setCurrentQuestionIndex, setCurrentScore} = useContext(InQuizContext);
   const currentQuestion = selectedQuiz.questions[currentQuestionIndex];
   const correctAnswerIndex = currentQuestion.correctAnswer;
+  const isCorrect = currentQuestion.options[correctAnswerIndex] === title;
 
   function handleCheckAnswer(){
-    alert(currentQuestion.options[correctAnswerIndex] === title)
+    if (isCorrect) setCurrentScore((prev) => {
+      const addedScore = prev + 1;
+      return addedScore
+    })
+    setCurrentQuestionIndex(prev => prev + 1);
   }
 
   return (

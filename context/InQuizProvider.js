@@ -9,7 +9,9 @@ export const InQuizProvider = ({children}) => {
     <InQuizContext.Provider 
       value={{
         currentQuestionIndex,
-        setCurrentQuestionIndex
+        setCurrentQuestionIndex,
+        currentScore,
+        setCurrentScore
       }}
     >
       {children}
