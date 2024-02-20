@@ -90,7 +90,7 @@ const Choices = () =>{
     a : "#F8C241",
     b : "#55D3F7",
     c : "#A3EB6D",
-    d : "FD8987",
+    d : "#FD8987",
   };
   const choices = Object.keys(choiceLabels).map((choice, index) => <Choice circleColor={choiceLabels[choice]} choice={choice} title={currentQuestion.options[index]}/>)
 
