@@ -26,7 +26,7 @@ const ForYouSection = () => {
   return (
     <View style={styles.forYouSection}>
       <Text style={styles.forYouHeader}>For you</Text>
-      <ScrollView horizontal>
+      <ScrollView showsHorizontalScrollIndicator={false} horizontal>
         {
           quizzes.map((quiz)=>{
             return (<QuizItem quiz={quiz} key={quiz.title} />)
@@ -39,7 +39,7 @@ const ForYouSection = () => {
 
 const QuizItem = ({quiz}) => {
   return (
-    <View>
+    <View style={styles.quizItem}>
       <Image 
         style={{
           width: 125,
@@ -48,7 +48,6 @@ const QuizItem = ({quiz}) => {
         }}
         source={quiz.image}
       />
-      <Text>{quiz.title}</Text>
     </View>
   )
 }
@@ -72,11 +71,14 @@ const styles = StyleSheet.create({
     display : 'flex',
     flexDirection : 'column',
     rowGap : 10,
-    paddingHorizontal : 10,
+    paddingHorizontal : 15,
   },
   forYouHeader : {
     fontWeight : '700',
     fontSize : 16
+  },
+  quizItem : {
+    marginRight : 15
   }
 })
 
