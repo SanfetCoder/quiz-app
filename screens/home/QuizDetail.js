@@ -1,8 +1,9 @@
 import React, { useContext } from 'react'
-import { Image, StyleSheet, Text, View, Button, TouchableOpacity, TouchableNativeFeedback } from 'react-native'
+import { Image, StyleSheet, Text, View, TouchableNativeFeedback } from 'react-native'
 import { HomeContext } from '../../context/HomeProvider'
 import { fetchQuizByName } from '../../models/quiz';
 import { LinearGradient } from 'expo-linear-gradient';
+import FavButton from '../../components/FavButton';
 
 const QuizDetail = () => {
   const {selectedQuiz} = useContext(HomeContext);
@@ -17,7 +18,7 @@ const QuizDetail = () => {
         }}
         source={fetchedQuiz.image}
         />
-      <Text style={styles.title}>{fetchedQuiz.title} quiz</Text>
+      <Header />
       <Text style={styles.description}>{fetchedQuiz.description}</Text>
       <LinearGradient
         colors={['#5224B7','#A248FF']}
@@ -38,6 +39,25 @@ const QuizDetail = () => {
   )
 }
 
+const Header = () => {
+  const {selectedQuiz} = useContext(HomeContext)
+  const fetchedQuiz = fetchQuizByName(selectedQuiz)
+  return (
+    <View 
+      style={{
+        display : 'flex',
+        flexDirection : 'row',
+        alignItems : 'center',
+        justifyContent : 'space-between',
+        width : '100%',
+        marginTop : 15
+      }}>
+      <Text style={styles.title}>{fetchedQuiz.title} quiz</Text>
+      <FavButton />
+    </View>
+  )
+}
+
 const styles = StyleSheet.create({
   container : {
     width : '100%',
@@ -52,7 +72,6 @@ const styles = StyleSheet.create({
   title : {
     fontSize : 18,
     fontWeight : '600',
-    marginTop : 15,
     marginLeft : 10
   },
   description : {

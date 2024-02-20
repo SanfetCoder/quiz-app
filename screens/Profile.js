@@ -30,7 +30,7 @@ const ProfileMain = () => {
 
 const SignOutButton = () => {
   return (
-    <TouchableNativeFeedback>
+    <TouchableNativeFeedback onPress={()=>alert("Sign Out")}>
       <View
         style={{
           width : '100%',
@@ -101,6 +101,7 @@ const styles = StyleSheet.create({
   header : {
     color : '#B4B4B4',
     width: 'auto',
+    fontWeight : '600'
   },
   activityContainer : {
     width : "100%",
