@@ -1,15 +1,17 @@
 import { useState } from "react";
-import { SafeAreaView, StyleSheet, ScrollView, View, Image, Button } from "react-native";
+import { Text, SafeAreaView, StyleSheet, ScrollView, View, Image, Button } from "react-native";
 import CategoryButton from "../../components/CategoryButton";
 import { quizzes } from "../../models/quiz";
 import Section from "../../components/Section";
 
-const MainScreen = () => {
+const MainScreen = ({route}) => {
+  const {selectedQuiz} = route.params;
   const categories = ["All","Science","Programming","Mathematics"];
   const [selectedCategory, setSelectedCategory] = useState('');
 
   return (
     <SafeAreaView style={styles.container}>
+      <Text>{selectedQuiz}</Text>
       <View>
         <ScrollView horizontal style={styles.categoryList} showsHorizontalScrollIndicator={false} showsVerticalScrollIndicator={false}>
           {
