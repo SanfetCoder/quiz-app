@@ -18,7 +18,7 @@ const ActivityList = () => {
       <Text style={styles.header}>
         Activities
       </Text>
-      <Activities />
+      {/* <Activities /> */}
     </View>
   )
 }
@@ -28,7 +28,7 @@ const Activities = () => {
     <ScrollView>
       {
         quizzes.map(quiz => {
-          return <Text>{quiz.title}</Text>
+          return <Text key={quiz.title}>{quiz.title}</Text>
         })
       }
     </ScrollView>
