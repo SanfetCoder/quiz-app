@@ -1,22 +1,28 @@
 import { StyleSheet } from 'react-native';
 import {NavigationContainer} from '@react-navigation/native';
-import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import Home from './screens/Home';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
-const Stack = createNativeStackNavigator();
+const Tab = createBottomTabNavigator();
 
 export default function App() {
   return (
     <NavigationContainer>
-      <Stack.Navigator>
-        <Stack.Screen
-          name="Home"
-          component={Home}
+      <Tab.Navigator
+        initialRouteName='Home'
+      >
+        <Tab.Screen 
+          name="Home" 
+          component={Home} 
           options={{
-            title: 'Quiz App'
+            title : 'Home',
+            tabBarIcon : ({color, size}) => {
+              return <MaterialCommunityIcons name="home" color={color} size={size}/>
+            }
           }}
-        />
-      </Stack.Navigator>
+          />
+      </Tab.Navigator>
     </NavigationContainer>
   );
 }

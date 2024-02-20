@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { View, Text, SafeAreaView, StyleSheet, ScrollView } from "react-native";
 import CategoryButton from "../components/CategoryButton";
+
 const Home = () => {
   const categories = ["All","Science","Programming","Mathematics"];
   const [selectedCategory, setSelectedCategory] = useState('');
