@@ -47,7 +47,7 @@ const ForYouSection = () => {
 const AllSection = () => {
   const {selectedCategory} = useContext(MainScreenContext);
   return (
-    <Section header="All">
+    <Section header={selectedCategory}>
       {
         quizzes.map((quiz)=>{
           return (quiz.category === selectedCategory || selectedCategory === "All" ? <QuizItem key={quiz.title} quiz={quiz} /> : null)
