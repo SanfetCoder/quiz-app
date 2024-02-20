@@ -86,8 +86,13 @@ const Choices = () =>{
   const {selectedQuiz} = useContext(AppContext);
   const currentQuestion = selectedQuiz.questions[currentQuestionIndex];
   const gap = 16;
-  const choiceLabels = ["a","b","c","d"];
-  const choices = choiceLabels.map((choice, index) => <Choice choice={choice} title={currentQuestion.options[index]}/>)
+  const choiceLabels = {
+    a : "#F8C241",
+    b : "#55D3F7",
+    c : "#A3EB6D",
+    d : "FD8987",
+  };
+  const choices = Object.keys(choiceLabels).map((choice, index) => <Choice circleColor={choiceLabels[choice]} choice={choice} title={currentQuestion.options[index]}/>)
 
   return (
     <View
@@ -106,7 +111,7 @@ const Choices = () =>{
   )
 }
 
-const Choice = ({choice, title}) => {
+const Choice = ({choice, title, circleColor}) => {
   return (
     <View
       style={{
@@ -127,7 +132,7 @@ const Choice = ({choice, title}) => {
     >
       <View
       style={{
-        backgroundColor : '#F8C241',
+        backgroundColor : circleColor,
         height : 40,
         width : 40,
         borderRadius : 50,
