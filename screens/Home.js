@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Text, SafeAreaView, StyleSheet, ScrollView, View, Image } from "react-native";
 import CategoryButton from "../components/CategoryButton";
 import { quizzes } from "../models/quiz";
+import Section from "../components/Section";
 
 const Home = () => {
   const categories = ["All","Science","Programming","Mathematics"];
@@ -24,15 +25,20 @@ const Home = () => {
 
 const ForYouSection = () => {
   return (
-    <View style={styles.forYouSection}>
-      <Text style={styles.forYouHeader}>For you</Text>
-      <ScrollView showsHorizontalScrollIndicator={false} horizontal>
-        {
-          quizzes.map((quiz)=>{
-            return (<QuizItem quiz={quiz} key={quiz.title} />)
-          })
-        }
-      </ScrollView>
+    <Section header="For you">
+      {
+        quizzes.map((quiz)=>{
+          return (<QuizItem quiz={quiz} key={quiz.title} />)
+        })
+      }
+    </Section>
+  )
+}
+
+const AllSection = () => {
+  return (
+    <View>
+
     </View>
   )
 }
@@ -66,16 +72,6 @@ const styles = StyleSheet.create({
     columnGap : 10,
     marginVertical : 20,
     marginHorizontal : 10,
-  },
-  forYouSection : {
-    display : 'flex',
-    flexDirection : 'column',
-    rowGap : 10,
-    paddingHorizontal : 15,
-  },
-  forYouHeader : {
-    fontWeight : '700',
-    fontSize : 16
   },
   quizItem : {
     marginRight : 15
