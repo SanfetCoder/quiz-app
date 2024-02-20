@@ -1,1 +1,3 @@
-export const categories = ["All","Science","Programming","Mathematics"];
+import { QUIZ_CATEGORY } from "../enum/quizCategory";
+
+export const categories = Object.values(QUIZ_CATEGORY);
