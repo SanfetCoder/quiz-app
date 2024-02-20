@@ -1,5 +1,5 @@
 import React, { useContext } from 'react'
-import { FlatList, Text, View } from 'react-native'
+import { FlatList, Text, TouchableOpacity, View } from 'react-native'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import { LinearGradient } from 'expo-linear-gradient';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
@@ -112,8 +112,19 @@ const Choices = () =>{
 }
 
 const Choice = ({choice, title, circleColor}) => {
+  const {setCurrentQuestionIndex} = useContext(InQuizContext);
+  const {selectedQuiz} = useContext(AppContext);
+  const {currentQuestionIndex} = useContext(InQuizContext);
+  const currentQuestion = selectedQuiz.questions[currentQuestionIndex];
+  const correctAnswerIndex = currentQuestion.correctAnswer;
+
+  function handleCheckAnswer(){
+    alert(currentQuestion.options[correctAnswerIndex] === title)
+  }
+
   return (
-    <View
+    <TouchableOpacity
+    onPress={handleCheckAnswer}
       style={{
         display : 'flex',
         flexDirection : 'column',
@@ -157,7 +168,7 @@ const Choice = ({choice, title, circleColor}) => {
           fontWeight : '600'
         }}
       >{title}</Text>
-    </View>
+    </TouchableOpacity>
   )
 }
 

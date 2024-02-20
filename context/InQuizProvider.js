@@ -4,10 +4,12 @@ export const InQuizContext = createContext();
 
 export const InQuizProvider = ({children}) => {
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
+  const [currentScore, setCurrentScore] = useState(0);
   return (
     <InQuizContext.Provider 
       value={{
-        currentQuestionIndex
+        currentQuestionIndex,
+        setCurrentQuestionIndex
       }}
     >
       {children}
