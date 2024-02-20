@@ -37,6 +37,8 @@ const Activities = () => {
 
 const styles = StyleSheet.create({
   container : {
+    flex : 1,
+    backgroundColor: 'white',
     display : 'flex',
     flexDirection : 'column',
     height : 'auto',

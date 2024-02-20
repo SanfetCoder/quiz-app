@@ -56,6 +56,7 @@ const styles = StyleSheet.create({
     flex : 1,
     display : 'flex',
     flexDirection : 'column',
+    justifyContent : 'flex-start',
     backgroundColor : 'white'
   },
   categoryList : {
