@@ -5,10 +5,12 @@ import { fetchQuizByName } from '../../models/quiz';
 import { LinearGradient } from 'expo-linear-gradient';
 import FavButton from '../../components/FavButton';
 import { AppContext } from '../../context/AppProvider';
+import { useNavigation } from '@react-navigation/native';
 
 const QuizDetail = () => {
   const {selectedQuiz} = useContext(HomeContext);
   const fetchedQuiz = fetchQuizByName(selectedQuiz)
+  const navigation = useNavigation();
   return (
     <View style={styles.container}>
       <Image 
@@ -25,7 +27,7 @@ const QuizDetail = () => {
         colors={['#5224B7','#A248FF']}
         style={styles.button}
         >
-          <TouchableNativeFeedback>
+          <TouchableNativeFeedback onPress={()=>navigation.navigate('StartQuiz')}>
             <Text 
               style={{
                 color : 'white',
