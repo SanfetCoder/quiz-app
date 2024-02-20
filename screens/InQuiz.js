@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { FlatList, Text, TouchableOpacity, View } from 'react-native'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import { LinearGradient } from 'expo-linear-gradient';
@@ -8,6 +8,12 @@ import { AppContext } from '../context/AppProvider';
 import { InQuizContext, InQuizProvider } from '../context/InQuizProvider';
 
 const InQuiz = () => {
+  const [didStart, setDidStart] = useState(false);
+
+  function handleUpdateStartTime(){
+    setDidStart(_ => true);
+  }
+
   return (
     <InQuizProvider>
       <LinearGradient
@@ -23,10 +29,41 @@ const InQuiz = () => {
             justifyContent : 'space-between'
           }}>
             <NavBar />
-            <Quiz />
+            { didStart ? <Quiz /> : <Timer onFinish={handleUpdateStartTime}/>}
         </SafeAreaView>
       </LinearGradient>
     </InQuizProvider>
+  )
+}
+
+const Timer = ({onFinish}) => {
+  const [currentTime, setCurentTime] = useState(5);
+
+  useEffect(()=>{
+    if (currentTime <= 0) return onFinish()
+    setTimeout(()=>{
+      setCurentTime(prev => prev - 1)
+    }, 1000)
+  },[currentTime])
+
+  return (
+    <View
+      style={{
+        height : '100%',
+        width : '100%',
+        display : 'flex',
+        flexDirection : 'column',
+        alignItems : 'center',
+        justifyContent : 'center'
+      }}
+    >
+      <Text
+        style={{
+          color : 'white',
+          fontSize : 40
+        }}
+      >{currentTime}</Text>
+    </View>
   )
 }
 
@@ -153,14 +190,14 @@ const Choice = ({choice, title, circleColor}) => {
 
   return (
     <TouchableOpacity
-    onPress={handleCheckAnswer}
+      onPress={handleCheckAnswer}
       style={{
         display : 'flex',
         flexDirection : 'column',
         alignItems : 'center',
         width : 100,
         backgroundColor : 'white',
-        height : 125,
+        height : 140,
         width : 150,
         borderRadius : 15,
         display : 'flex',
