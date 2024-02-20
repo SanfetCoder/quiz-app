@@ -11,13 +11,13 @@ export default function App() {
   return (
     <NavigationContainer>
       <Tab.Navigator
-        initialRouteName='Home'
+        initialRouteName='Home Wrapper'
         screenOptions={{
           headerShown : false
         }}
       >
         <Tab.Screen 
-          name="Home" 
+          name="Home Wrapper" 
           component={Home} 
           options={{
             title : 'Home',
