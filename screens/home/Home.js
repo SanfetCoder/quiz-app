@@ -15,7 +15,7 @@ const Home = () => {
           component={MainScreen} 
         />
         <Stack.Screen 
-        name="Quiz" 
+        name="Quiz"
         component={QuizDetail} />
       </Stack.Navigator>
     </HomeProvider>

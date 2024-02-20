@@ -16,3 +16,7 @@ export const quizzes : Quiz[] = [
     description : "A beginner level of calculus topic in Mathematics"
   }
 ]
+
+export function fetchQuizByName(quizName : string){
+  return quizzes.filter(quiz => quiz.title === quizName)[0]
+}
