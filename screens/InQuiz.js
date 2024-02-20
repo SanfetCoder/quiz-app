@@ -39,7 +39,8 @@ const Pagination = () => {
       <Text 
         style={{
           color : 'white',
-          fontSize : 15
+          fontSize : 15,
+          fontWeight : '600'
         }}
         >
         {currentQuestionIndex + 1} / {maxQuestions}
@@ -51,6 +52,7 @@ const Pagination = () => {
 const Quiz = () => {
   const {selectedQuiz} = useContext(AppContext);
   const {currentQuestionIndex} = useContext(InQuizContext);
+  const currentQuestion = selectedQuiz.questions[currentQuestionIndex];
   return (
     <View
       style={{
@@ -71,9 +73,60 @@ const Quiz = () => {
           width : '80%',
           lineHeight : 30
         }}>
-        {selectedQuiz.questions[currentQuestionIndex].question}
+        {currentQuestion.question}
       </Text>
+      <Choice choice="a" title={currentQuestion.options[0]}/>
       <Pagination />
+    </View>
+  )
+}
+
+const Choice = ({choice, title}) => {
+  return (
+    <View
+      style={{
+        display : 'flex',
+        flexDirection : 'column',
+        alignItems : 'center',
+        width : 100,
+        backgroundColor : 'white',
+        height : 125,
+        width : 150,
+        borderRadius : 15,
+        display : 'flex',
+        flexDirection : 'column',
+        alignItems : 'center',
+        justifyContent : 'center',
+        rowGap : 10,
+      }}
+    >
+      <View
+      style={{
+        backgroundColor : '#F8C241',
+        height : 40,
+        width : 40,
+        borderRadius : 50,
+        display: 'flex',
+        flexDirection : 'row',
+        alignItems : 'center',
+        justifyContent : 'center',
+      }}>
+        <Text 
+          style={{
+            color : 'white',
+            textAlign : "center",
+            fontSize : 19,
+            fontWeight : '600'
+          }}>
+            {choice.toUpperCase()}
+        </Text>
+      </View>
+      <Text
+        style={{
+          textAlign : 'center',
+          fontWeight : '600'
+        }}
+      >{title}</Text>
     </View>
   )
 }
