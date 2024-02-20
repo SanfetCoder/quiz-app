@@ -8,7 +8,7 @@ import { AppContext } from '../../context/AppProvider';
 import { useNavigation } from '@react-navigation/native';
 
 const QuizDetail = () => {
-  const {selectedQuiz} = useContext(HomeContext);
+  const {selectedQuiz} = useContext(AppContext);
   const fetchedQuiz = fetchQuizByName(selectedQuiz)
   const navigation = useNavigation();
   return (
@@ -43,7 +43,7 @@ const QuizDetail = () => {
 }
 
 const Header = () => {
-  const {selectedQuiz} = useContext(HomeContext)
+  const {selectedQuiz} = useContext(AppContext)
   const {handleAddFavQuizzes, favQuizzes, handleRemoveQuiz} = useContext(AppContext)
   const fetchedQuiz = fetchQuizByName(selectedQuiz)
   const isLiked = favQuizzes.some(quiz => quiz.title === selectedQuiz.title) 

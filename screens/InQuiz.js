@@ -1,9 +1,11 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { Text, View } from 'react-native'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import { LinearGradient } from 'expo-linear-gradient';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import { useNavigation } from '@react-navigation/native';
+import { AppContext } from '../context/AppProvider';
+
 const InQuiz = () => {
   return (
     <LinearGradient
@@ -24,24 +26,26 @@ const InQuiz = () => {
 }
 
 const NavBar = () => {
+  const {selectedQuiz} = useContext(AppContext);
   const navigation = useNavigation();
   return (
     <View
       style={{
         width : '100%',
-        height : 50,
         display : 'flex',
         flexDirection : 'row',
-        justifyContent : 'space-between',
+        justifyContent : 'center',
         alignItems : 'center',
-        paddingHorizontal : 15
+        paddingHorizontal : 15,
+        marginTop : 10,
       }}
     >
       <MaterialCommunityIcons 
         onPress={()=>navigation.navigate('Home')}
         style={{
           color: 'white',
-          width : '50%'
+          position : 'absolute',
+          left : 15,
         }} 
         size={30} 
         name="close-circle"/>
@@ -50,14 +54,9 @@ const NavBar = () => {
           color : 'white',
           fontWeight : '600',
           fontSize : 20,
-          height : 20,
-          marginRight : 'auto',
-          width : '50%',
-          transform : [{
-            translateX : -50
-          }]
         }}
-      >React Quiz</Text>
+      >{selectedQuiz.title}</Text>
+      <View></View>
     </View>
   )
 }

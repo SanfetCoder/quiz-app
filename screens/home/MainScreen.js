@@ -58,7 +58,7 @@ const AllSection = () => {
 }
 
 const QuizItem = ({quiz}) => {
-  const { handleSelectQuiz} = useContext(HomeContext);
+  const { handleSelectQuiz} = useContext(AppContext);
   const navigate = useNavigation();
   return (
     <TouchableOpacity 
