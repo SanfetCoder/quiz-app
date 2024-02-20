@@ -31,7 +31,7 @@ const styles = StyleSheet.create({
   },
   profileText : {
     fontWeight : '600',
-    fontSize : 14
+  fontSize : 14
   }
 })
 

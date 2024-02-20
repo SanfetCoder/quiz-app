@@ -1,12 +1,13 @@
 import { useState } from "react";
-import { Text, SafeAreaView, StyleSheet, ScrollView, View, Image } from "react-native";
-import CategoryButton from "../components/CategoryButton";
-import { quizzes } from "../models/quiz";
-import Section from "../components/Section";
+import { SafeAreaView, StyleSheet, ScrollView, View, Image, Button } from "react-native";
+import CategoryButton from "../../components/CategoryButton";
+import { quizzes } from "../../models/quiz";
+import Section from "../../components/Section";
 
-const Home = () => {
+const MainScreen = () => {
   const categories = ["All","Science","Programming","Mathematics"];
   const [selectedCategory, setSelectedCategory] = useState('');
+
   return (
     <SafeAreaView style={styles.container}>
       <View>
@@ -84,4 +85,4 @@ const styles = StyleSheet.create({
   }
 })
 
-export default Home
+export default MainScreen

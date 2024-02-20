@@ -1,6 +1,6 @@
 import { StyleSheet } from 'react-native';
 import {NavigationContainer} from '@react-navigation/native';
-import Home from './screens/Home';
+import Home from './screens/home/Home';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import Profile from './screens/Profile';
