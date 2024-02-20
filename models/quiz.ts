@@ -74,9 +74,56 @@ export const quizzes : Quiz[] = [
     category : QUIZ_CATEGORY.MATHEMATICS,
     questions : [
       {
-
-      }
-    ]
+      question: "What is the derivative of x^2 with respect to x?",
+      options: ["2x", "x^2", "2", "1"],
+      correctAnswer: 0 // Index of the correct answer in the options array
+    },
+    {
+      question: "What is the integral of 2x with respect to x?",
+      options: ["x^2", "x", "2x^2", "x^3"],
+      correctAnswer: 2
+    },
+    {
+      question: "What is the limit of (1/x) as x approaches infinity?",
+      options: ["0", "1", "infinity", "undefined"],
+      correctAnswer: 0
+    },
+    {
+      question: "What is the derivative of sin(x) with respect to x?",
+      options: ["cos(x)", "-sin(x)", "tan(x)", "cot(x)"],
+      correctAnswer: 0
+    },
+    {
+      question: "What is the integral of e^x with respect to x?",
+      options: ["e^x", "ln(x)", "x^2/2", "e^x + C"],
+      correctAnswer: 3
+    },
+    {
+      question: "What is the derivative of ln(x) with respect to x?",
+      options: ["1/x", "x", "cos(x)", "e^x"],
+      correctAnswer: 0
+    },
+    {
+      question: "What is the area under the curve y = x^2 from x = 0 to x = 2?",
+      options: ["4", "8", "2", "6"],
+      correctAnswer: 1
+    },
+    {
+      question: "What is the derivative of a constant function?",
+      options: ["0", "1", "2", "undefined"],
+      correctAnswer: 0
+    },
+    {
+      question: "What is the integral of a constant function?",
+      options: ["0", "1", "x", "undefined"],
+      correctAnswer: 2
+    },
+    {
+      question: "What is the limit of (sin(x) / x) as x approaches 0?",
+      options: ["1", "0", "infinity", "undefined"],
+      correctAnswer: 0
+    }
+  ]
   }
 ]
 

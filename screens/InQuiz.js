@@ -1,5 +1,5 @@
 import React, { useContext } from 'react'
-import { Text, View } from 'react-native'
+import { FlatList, Text, View } from 'react-native'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import { LinearGradient } from 'expo-linear-gradient';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
@@ -56,7 +56,7 @@ const Quiz = () => {
   return (
     <View
       style={{
-        height : '60%',
+        height : '70%',
         width : '100%',
         display : 'flex',
         flexDirection : 'column',
@@ -75,9 +75,34 @@ const Quiz = () => {
         }}>
         {currentQuestion.question}
       </Text>
-      <Choice choice="a" title={currentQuestion.options[0]}/>
+      <Choices />
       <Pagination />
     </View>
+  )
+}
+
+const Choices = () =>{
+  const {currentQuestionIndex} = useContext(InQuizContext);
+  const {selectedQuiz} = useContext(AppContext);
+  const currentQuestion = selectedQuiz.questions[currentQuestionIndex];
+  const gap = 16;
+  const choiceLabels = ["a","b","c","d"];
+  const choices = choiceLabels.map((choice, index) => <Choice choice={choice} title={currentQuestion.options[index]}/>)
+
+  return (
+    <View
+      style={{height : 300}}
+      >
+      <FlatList
+      scrollEnabled={false}
+      contentContainerStyle={{ gap }}
+      columnWrapperStyle={{ gap }}
+      data={choices} 
+      renderItem={({item})=> item} 
+      numColumns={2} 
+      />
+    </View>
+      
   )
 }
 
