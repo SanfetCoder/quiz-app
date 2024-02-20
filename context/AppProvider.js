@@ -4,10 +4,16 @@ export const AppContext = createContext();
 
 export const AppProvider = ({children}) => {
   const [favQuizzes, setFavQuizzes] = useState([]);
+
+  function handleAddFavQuizzes(newQuiz) {
+    setFavQuizzes(prev => [...prev, newQuiz])
+  }
+  
   return (
     <AppContext.Provider
       value={{
-        favQuizzes
+        favQuizzes,
+        handleAddFavQuizzes
       }}
     >
       {children}

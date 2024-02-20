@@ -6,10 +6,11 @@ import Section from "../../components/Section";
 import { useNavigation } from '@react-navigation/native';
 import { HomeContext } from "../../context/HomeProvider";
 import { categories } from "../../models/categories";
+import { AppContext } from "../../context/AppProvider";
 
 const MainScreen = () => {
   const [selectedCategory, setSelectedCategory] = useState(categories[0]);
-
+  const {favQuizzes} = useContext(AppContext);
   return (
     <SafeAreaView style={styles.container}>
       <View>
@@ -21,7 +22,7 @@ const MainScreen = () => {
           }
         </ScrollView>
       </View>
-      <ForYouSection />
+      {favQuizzes.length > 0 && <ForYouSection />}
       <AllSection />
     </SafeAreaView>
   )
