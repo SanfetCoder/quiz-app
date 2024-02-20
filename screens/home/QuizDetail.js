@@ -1,10 +1,10 @@
 import React from 'react'
-import { View } from 'react-native'
+import { Text, View } from 'react-native'
 
 const QuizDetail = () => {
   return (
     <View>
-      
+      <Text>This is Quiz detail page</Text>
     </View>
   )
 }

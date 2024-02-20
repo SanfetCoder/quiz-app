@@ -1,7 +1,6 @@
 import { createStackNavigator } from '@react-navigation/stack';
 import MainScreen from "./MainScreen";
 import QuizDetail from './QuizDetail';
-import { useEffect, useState } from 'react';
 import HomeProvider from '../../context/HomeProvider';
 
 const Stack = createStackNavigator();

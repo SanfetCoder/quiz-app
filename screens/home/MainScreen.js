@@ -3,32 +3,26 @@ import { Text, SafeAreaView, StyleSheet, ScrollView, View, Image, Button, Toucha
 import CategoryButton from "../../components/CategoryButton";
 import { quizzes } from "../../models/quiz";
 import Section from "../../components/Section";
-import { MainScreenContext } from "../../context/MainScreenProvider";
+import { useNavigation } from '@react-navigation/native';
 import { HomeContext } from "../../context/HomeProvider";
 
-const MainScreen = ({route}) => {
-  const {selectedQuiz, handleSelectQuiz} = useContext(HomeContext);
+const MainScreen = ({navigation}) => {
   const categories = ["All","Science","Programming","Mathematics"];
   const [selectedCategory, setSelectedCategory] = useState('');
 
   return (
     <SafeAreaView style={styles.container}>
-      <MainScreenContext.Provider 
-        value={{
-          handleSelectQuiz
-        }}>
-        <View>
-          <ScrollView horizontal style={styles.categoryList} showsHorizontalScrollIndicator={false} showsVerticalScrollIndicator={false}>
-            {
-              categories.map((category)=>{
-                return <CategoryButton onPress={()=>setSelectedCategory(category)} isActive={category === selectedCategory} key={category} title={category}/>
-              })
-            }
-          </ScrollView>
-        </View>
-        <ForYouSection />
-        <AllSection />
-      </MainScreenContext.Provider>
+      <View>
+        <ScrollView horizontal style={styles.categoryList} showsHorizontalScrollIndicator={false} showsVerticalScrollIndicator={false}>
+          {
+            categories.map((category)=>{
+              return <CategoryButton onPress={()=>setSelectedCategory(category)} isActive={category === selectedCategory} key={category} title={category}/>
+            })
+          }
+        </ScrollView>
+      </View>
+      <ForYouSection />
+      <AllSection />
     </SafeAreaView>
   )
 }
@@ -58,9 +52,16 @@ const AllSection = () => {
 }
 
 const QuizItem = ({quiz}) => {
-  const {handleSelectQuiz} = useContext(MainScreenContext);
+  const { handleSelectQuiz} = useContext(HomeContext);
+  const navigate = useNavigation();
   return (
-    <TouchableOpacity onPress={()=>handleSelectQuiz(quiz.title)} style={styles.quizItem}>
+    <TouchableOpacity 
+      onPress={()=>{
+        handleSelectQuiz(quiz.title)
+        navigate.navigate("Quiz")
+      }} 
+      style={styles.quizItem}
+      >
       <Image 
         style={{
           width: 125,
