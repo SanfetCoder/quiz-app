@@ -142,10 +142,9 @@ const Pagination = () => {
 
 const Quiz = () => {
   const {selectedQuiz} = useContext(AppContext);
-  const {currentQuestionIndex, currentScore} = useContext(InQuizContext);
+  const {currentQuestionIndex} = useContext(InQuizContext);
   const currentQuestion = selectedQuiz.questions[currentQuestionIndex];
   const isQuizDone = currentQuestionIndex >= selectedQuiz.questions.length;
-  const maxScore = selectedQuiz.questions.length;
 
   if (isQuizDone) {
     return (
@@ -158,48 +157,7 @@ const Quiz = () => {
           justifyContent : 'center'
         }}
       >
-        <View
-          style={{
-            width : '100%',
-            height : '30%',
-            paddingVertical : '10%',
-            backgroundColor : 'white',
-            borderRadius : 15,
-            display : 'flex',
-            flexDirection : 'column',
-            justifyContent : 'space-between',
-            alignItems : 'center'
-          }}
-        >
-          <Text
-              style={{
-                color : '#C735B5',
-                fontSize : 50,
-                fontWeight : '700'
-              }}
-            >
-              {currentScore}
-          </Text>
-          <LinearGradient
-            style={{
-            width : '90%',
-            height : 10,
-            borderRadius : 20
-            }}
-            colors={['#C735B5', '#DC3757']}
-          >
-            
-          </LinearGradient>
-          <Text
-              style={{
-                color : '#C735B5',
-                fontSize : 50,
-                fontWeight : '700'
-              }}
-            >
-              {maxScore}
-            </Text>
-        </View>
+        <ScoreBoard /> 
       </View>
     )
   }
@@ -228,6 +186,56 @@ const Quiz = () => {
       </Text>
       <Choices />
       <Pagination />
+    </View>
+  )
+}
+
+const ScoreBoard = () => {
+  const {selectedQuiz} = useContext(AppContext);
+  const {currentScore} = useContext(InQuizContext);
+  const maxScore = selectedQuiz.questions.length;
+  return (
+    <View
+      style={{
+        width : '100%',
+        height : '30%',
+        paddingVertical : '10%',
+        backgroundColor : 'white',
+        borderRadius : 15,
+        display : 'flex',
+        flexDirection : 'column',
+        justifyContent : 'space-between',
+        alignItems : 'center'
+      }}
+    >
+      <Text
+          style={{
+            color : '#C735B5',
+            fontSize : 50,
+            fontWeight : '700'
+          }}
+        >
+          {currentScore}
+      </Text>
+      <LinearGradient
+        style={{
+        width : '90%',
+        height : 10,
+        borderRadius : 20
+        }}
+        colors={['#C735B5', '#DC3757']}
+      >
+        
+      </LinearGradient>
+      <Text
+          style={{
+            color : '#C735B5',
+            fontSize : 50,
+            fontWeight : '700'
+          }}
+        >
+          {maxScore}
+        </Text>
     </View>
   )
 }
