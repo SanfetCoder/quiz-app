@@ -42,7 +42,7 @@ const QuizDetail = () => {
 
 const Header = () => {
   const {selectedQuiz} = useContext(HomeContext)
-  const {handleAddFavQuizzes, favQuizzes} = useContext(AppContext)
+  const {handleAddFavQuizzes, favQuizzes, handleRemoveQuiz} = useContext(AppContext)
   const fetchedQuiz = fetchQuizByName(selectedQuiz)
   const isLiked = favQuizzes.some(quiz => quiz.title === selectedQuiz.title) 
   console.log(isLiked)
@@ -57,7 +57,12 @@ const Header = () => {
         marginTop : 15
       }}>
       <Text style={styles.title}>{fetchedQuiz.title} quiz</Text>
-      <FavButton onPress={()=>handleAddFavQuizzes(selectedQuiz)} isLiked={isLiked}/>
+      <FavButton 
+        onPress={()=>{
+          if (isLiked) return handleRemoveQuiz(selectedQuiz)
+          handleAddFavQuizzes(selectedQuiz)
+        }} 
+        isLiked={isLiked}/>
     </View>
   )
 }

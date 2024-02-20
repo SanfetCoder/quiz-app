@@ -8,12 +8,17 @@ export const AppProvider = ({children}) => {
   function handleAddFavQuizzes(newQuiz) {
     setFavQuizzes(prev => [...prev, newQuiz])
   }
+
+  function handleRemoveQuiz(targetQuiz){
+    setFavQuizzes(prev => prev.filter(quiz => quiz.title !== targetQuiz.title))
+  }
   
   return (
     <AppContext.Provider
       value={{
         favQuizzes,
-        handleAddFavQuizzes
+        handleAddFavQuizzes,
+        handleRemoveQuiz
       }}
     >
       {children}
