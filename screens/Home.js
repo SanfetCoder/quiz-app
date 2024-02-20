@@ -19,6 +19,7 @@ const Home = () => {
         </ScrollView>
       </View>
       <ForYouSection />
+      <AllSection />
     </SafeAreaView>
   )
 }
@@ -37,9 +38,13 @@ const ForYouSection = () => {
 
 const AllSection = () => {
   return (
-    <View>
-
-    </View>
+    <Section header="All">
+      {
+        quizzes.map((quiz)=>{
+          return (<QuizItem quiz={quiz} key={quiz.title} />)
+        })
+      }
+    </Section>
   )
 }
 
@@ -64,14 +69,15 @@ const styles = StyleSheet.create({
     display : 'flex',
     flexDirection : 'column',
     justifyContent : 'flex-start',
-    backgroundColor : 'white'
+    backgroundColor : 'white',
+    rowGap : 25,
   },
   categoryList : {
     display : 'flex',
     flexDirection : 'row',
     columnGap : 10,
-    marginVertical : 20,
     marginHorizontal : 10,
+    marginTop : 15,
   },
   quizItem : {
     marginRight : 15
