@@ -2,6 +2,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 import MainScreen from "./MainScreen";
 import QuizDetail from './QuizDetail';
 import HomeProvider from '../../context/HomeProvider';
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
 const Stack = createStackNavigator();
 
@@ -9,10 +10,10 @@ const Home = () => {
 
   return (
     <HomeProvider>
-      <Stack.Navigator screenOptions={{ headerShown : false}}>
+      <Stack.Navigator screenOptions={{ headerShown : true}}>
         <Stack.Screen 
           name="Main"
-          component={MainScreen} 
+          component={MainScreen}
         />
         <Stack.Screen 
         name="Quiz"

@@ -1,5 +1,5 @@
 import React, { useContext } from 'react'
-import { Image, StyleSheet, Text, View, Button } from 'react-native'
+import { Image, StyleSheet, Text, View, Button, TouchableOpacity, TouchableNativeFeedback } from 'react-native'
 import { HomeContext } from '../../context/HomeProvider'
 import { fetchQuizByName } from '../../models/quiz';
 import { LinearGradient } from 'expo-linear-gradient';
@@ -9,6 +9,7 @@ const QuizDetail = () => {
   const fetchedQuiz = fetchQuizByName(selectedQuiz)
   return (
     <View style={styles.container}>
+      
       <Image 
         style={{
           width : '100%',
@@ -23,14 +24,16 @@ const QuizDetail = () => {
         colors={['#5224B7','#A248FF']}
         style={styles.button}
         >
-          <Text 
-            style={{
-              color : 'white',
-              fontWeight : '600'
-            }}
-            >
-              Start
-          </Text>
+          <TouchableNativeFeedback>
+            <Text 
+              style={{
+                color : 'white',
+                fontWeight : '600'
+              }}
+              >
+                Start
+            </Text>
+          </TouchableNativeFeedback>
       </LinearGradient>
     </View>
   )

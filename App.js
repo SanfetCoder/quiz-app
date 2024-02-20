@@ -12,6 +12,9 @@ export default function App() {
     <NavigationContainer>
       <Tab.Navigator
         initialRouteName='Home'
+        screenOptions={{
+          headerShown : false
+        }}
       >
         <Tab.Screen 
           name="Home" 
@@ -20,7 +23,7 @@ export default function App() {
             title : 'Home',
             tabBarIcon : ({color, size}) => {
               return <MaterialCommunityIcons name="home" color={color} size={size}/>
-            }
+            },
           }}
           />
         <Tab.Screen 
