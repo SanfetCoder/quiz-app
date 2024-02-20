@@ -4,6 +4,7 @@ import { HomeContext } from '../../context/HomeProvider'
 import { fetchQuizByName } from '../../models/quiz';
 import { LinearGradient } from 'expo-linear-gradient';
 import FavButton from '../../components/FavButton';
+import { AppContext } from '../../context/AppProvider';
 
 const QuizDetail = () => {
   const {selectedQuiz} = useContext(HomeContext);
@@ -41,8 +42,10 @@ const QuizDetail = () => {
 
 const Header = () => {
   const {selectedQuiz} = useContext(HomeContext)
+  const {handleAddFavQuizzes, favQuizzes} = useContext(AppContext)
   const fetchedQuiz = fetchQuizByName(selectedQuiz)
-  const [isLiked, setIsLiked] = useState(false)
+  const isLiked = favQuizzes.some(quiz => quiz.title === selectedQuiz.title) 
+  console.log(isLiked)
   return (
     <View 
       style={{
@@ -54,7 +57,7 @@ const Header = () => {
         marginTop : 15
       }}>
       <Text style={styles.title}>{fetchedQuiz.title} quiz</Text>
-      <FavButton onPress={()=>setIsLiked(prev => !prev)} isActive={isLiked}/>
+      <FavButton onPress={()=>handleAddFavQuizzes(selectedQuiz)} isLiked={isLiked}/>
     </View>
   )
 }

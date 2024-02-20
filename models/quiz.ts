@@ -17,6 +17,6 @@ export const quizzes : Quiz[] = [
   }
 ]
 
-export function fetchQuizByName(quizName : string){
-  return quizzes.filter(quiz => quiz.title === quizName)[0]
+export function fetchQuizByName(targetQuiz : Quiz){
+  return quizzes.filter(quiz => quiz.title === targetQuiz.title)[0]
 }

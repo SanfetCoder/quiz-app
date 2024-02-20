@@ -3,10 +3,10 @@ import { createContext, useState } from "react";
 export const HomeContext = createContext();
 
 const HomeProvider = ({children}) => {
-  const [selectedQuiz, setSelectedQuiz] = useState("none selected")
+  const [selectedQuiz, setSelectedQuiz] = useState(null)
 
-  function handleSelectQuiz(quizName){
-    setSelectedQuiz(_ => quizName)
+  function handleSelectQuiz(quiz){
+    setSelectedQuiz(_ => quiz)
   }
 
   return (

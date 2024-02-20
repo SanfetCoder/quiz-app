@@ -29,10 +29,11 @@ const MainScreen = () => {
 }
 
 const ForYouSection = () => {
+  const {favQuizzes} = useContext(AppContext);
   return (
     <Section header="For you">
       {
-        quizzes.map((quiz)=>{
+        favQuizzes.map((quiz)=>{
           return (<QuizItem quiz={quiz} key={quiz.title} />)
         })
       }
@@ -58,7 +59,7 @@ const QuizItem = ({quiz}) => {
   return (
     <TouchableOpacity 
       onPress={()=>{
-        handleSelectQuiz(quiz.title)
+        handleSelectQuiz(quiz)
         navigate.navigate("Quiz")
       }} 
       style={styles.quizItem}
