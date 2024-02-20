@@ -1,5 +1,5 @@
-import React, { useContext, useEffect, useState } from 'react'
-import { FlatList, Text, TouchableOpacity, View } from 'react-native'
+import React, { useContext, useEffect, useState, useRef } from 'react'
+import { FlatList, Text, TouchableOpacity, View, Animated} from 'react-native'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import { LinearGradient } from 'expo-linear-gradient';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
@@ -36,50 +36,89 @@ const InQuiz = () => {
   )
 }
 
-const Timer = ({onFinish}) => {
-  const [currentTime, setCurentTime] = useState(5);
+const Timer = ({ onFinish }) => {
+  const [currentTime, setCurrentTime] = useState(5);
+  const animation = useRef(new Animated.Value(0.8)).current; // Initialize animated value for scale
 
-  // useEffect(()=>{
-  //   if (currentTime <= 0) return onFinish()
-  //   setTimeout(()=>{
-  //     setCurentTime(prev => prev - 1)
-  //   }, 1000)
-  // },[currentTime])
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentTime(prevTime => {
+        if (prevTime <= 0) {
+          clearInterval(timer);
+          onFinish();
+          return 0;
+        }
+        return prevTime - 1;
+      });
+    }, 1000);
+
+    // Set up background animation
+    const animateBackground = () => {
+      Animated.sequence([
+        Animated.timing(animation, {
+          toValue: 1,
+          duration: 500,
+          useNativeDriver: true,
+        }),
+        Animated.timing(animation, {
+          toValue: 0.8,
+          duration: 500,
+          useNativeDriver: true,
+        }),
+      ]).start(() => {
+        // Repeat animation
+        animateBackground();
+      });
+    };
+
+    animateBackground();
+
+    return () => clearInterval(timer);
+  }, [onFinish, animation]);
 
   return (
     <View
       style={{
-        height : '100%',
-        width : '100%',
-        display : 'flex',
-        flexDirection : 'column',
-        alignItems : 'center',
-        justifyContent : 'center'
+        height: '100%',
+        width: '100%',
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        justifyContent: 'center',
       }}
     >
-      <View
-      style={{
-        height : 120,
-        width : 120,
-        display : 'flex',
-        flexDirection : 'column',
-        alignItems : 'center',
-        justifyContent : 'center',
-        borderColor : 'red',
-        borderWidth : 5,
-        borderRadius : 100,
-      }}
-    >
-      <Text
+      <Animated.View
         style={{
-          color : 'white',
-          fontSize : 40,
+          transform: [{ scale: animation }],
         }}
-      >{currentTime}</Text>
-      </View>
+      >
+        <LinearGradient
+          style={{
+            height: 140,
+            width: 140,
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+            justifyContent: 'center',
+            borderRadius: 100,
+          }}
+          colors={['#C735B5', '#DC3757']}
+        >
+          <Text
+            style={{
+              color: 'white',
+              fontSize: 40,
+            }}
+          >
+            {currentTime}
+          </Text>
+        </LinearGradient>
+      </Animated.View>
     </View>
-  )
-}
+  );
+};
+
+
 
 const Pagination = () => {
   const {selectedQuiz} = useContext(AppContext);
