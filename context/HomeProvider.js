@@ -5,7 +5,9 @@ export const HomeContext = createContext();
 const HomeProvider = ({children}) => {
 
   return (
-    <HomeContext.Provider >
+    <HomeContext.Provider 
+      value={{}}
+    >
       {children }
     </HomeContext.Provider>
   )
