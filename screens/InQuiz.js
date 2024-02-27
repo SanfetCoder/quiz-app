@@ -8,6 +8,7 @@ import { AppContext } from "../context/AppProvider";
 import { InQuizContext, InQuizProvider } from "../context/InQuizProvider";
 import { addActivity } from "../models/activities";
 import uuid from 'react-native-uuid';
+import { Toast } from "toastify-react-native";
 
 const InQuiz = () => {
   // Track whether the quiz has already started or not
@@ -415,7 +416,7 @@ function DoneButton({}) {
       // add the current activity to the database
       addActivity(newActivity)
       // show success message
-      alert("Saved the activity")
+      Toast.success("Saved the activity")
       // navigate to home
       navigation.navigate("Home")
     } catch (error) {

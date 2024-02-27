@@ -7,6 +7,7 @@ import Profile from "./screens/Profile";
 import { AppProvider } from "./context/AppProvider";
 import { createStackNavigator } from "@react-navigation/stack";
 import InQuiz from "./screens/InQuiz";
+import ToastManager from 'toastify-react-native'
 
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
@@ -54,6 +55,7 @@ const HomeNavigator = () => {
 export default function App() {
   return (
     <NavigationContainer>
+      <ToastManager position="bottom"/>
       <AppProvider>
         <Stack.Navigator
           screenOptions={{

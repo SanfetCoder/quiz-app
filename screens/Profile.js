@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { LinearGradient } from "expo-linear-gradient";
 import {
   SafeAreaView,
   StyleSheet,
@@ -11,12 +12,13 @@ import {
   TouchableNativeFeedback,
   Image,
 } from "react-native";
-import { useIsFocused } from '@react-navigation/native'
+import { useIsFocused } from "@react-navigation/native";
 import ProfileCard from "../components/ProfileCard";
 import { createStackNavigator } from "@react-navigation/stack";
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
 import { fetchActivities } from "../models/activities";
 import { fetchQuizzesById } from "../models/quiz";
+import { Toast } from "toastify-react-native";
 
 const Stack = createStackNavigator();
 
@@ -40,37 +42,40 @@ const ProfileMain = () => {
 
 const SignOutButton = () => {
   return (
-    <TouchableNativeFeedback onPress={() => alert("Sign Out")}>
-      <View
-        style={{
-          width: "100%",
-          borderRadius: 10,
-          backgroundColor: "red",
-          display: "flex",
-          flexDirection: "row",
-          alignItems: "center",
-          justifyContent: "center",
-          height: 45,
-          columnGap: 10,
-          marginTop: "auto",
-          marginBottom: "10%",
-        }}
-      >
-        <MaterialCommunityIcons
-          style={{ color: "white" }}
-          size={25}
-          name="export"
-        />
-        <Text
+    <LinearGradient
+      style={{ width: "100%", height: 45, marginBottom: 10, borderRadius: 10, }}
+      colors={["red", "#A248FF"]}
+    >
+      <TouchableNativeFeedback onPress={() => Toast.success("Sign Out")}>
+        <View
           style={{
-            color: "white",
-            fontWeight: "600",
+            width: "100%",
+            backgroundColor: "red",
+            display: "flex",
+            flexDirection: "row",
+            alignItems: "center",
+            justifyContent: "center",
+            height: "100%",
+            columnGap: 10,
+            marginTop: "auto",
           }}
         >
-          Sign Out
-        </Text>
-      </View>
-    </TouchableNativeFeedback>
+          <MaterialCommunityIcons
+            style={{ color: "white" }}
+            size={25}
+            name="export"
+          />
+          <Text
+            style={{
+              color: "white",
+              fontWeight: "600",
+            }}
+          >
+            Sign Out
+          </Text>
+        </View>
+      </TouchableNativeFeedback>
+    </LinearGradient>
   );
 };
 
@@ -87,11 +92,11 @@ const Activities = () => {
   const [activities, setActivites] = useState(null);
   const isFocused = useIsFocused();
 
-  console.log("Rendering Activities")
+  console.log("Rendering Activities");
   useEffect(() => {
     const fetchData = () => {
       const fetchedActivities = fetchActivities();
-      console.log(fetchedActivities)
+      console.log(fetchedActivities);
       setActivites(fetchedActivities);
     };
 
@@ -100,9 +105,10 @@ const Activities = () => {
 
   return (
     <ScrollView
+      showsVerticalScrollIndicator={false}
       style={{
         paddingTop: 20,
-        height : '100%',
+        height: 430,
       }}
     >
       {activities?.map((activity) => {
@@ -115,7 +121,7 @@ const Activities = () => {
 const Activity = ({ activity }) => {
   const [quizInfo, setQuizInfo] = useState(null);
 
-  console.log("Rendering quizInfo")
+  console.log("Rendering quizInfo");
   useEffect(() => {
     const fetchQuizInfo = () => {
       const fetchedQuizInfo = fetchQuizzesById([activity.quizId])[0];
@@ -133,7 +139,7 @@ const Activity = ({ activity }) => {
         justifyContent: "space-between",
         width: "100%",
         height: 70,
-        marginBottom : 15
+        marginBottom: 15,
       }}
     >
       <View
