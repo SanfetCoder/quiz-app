@@ -132,6 +132,14 @@ export const quizzes : Quiz[] = [
   }
 ]
 
+export function fetchQuizzesById(quizIds : (string | Uint8Array)[]){
+  try {
+    return quizzes.filter(quiz => quizIds.includes(quiz.id));
+  } catch (error : any) {
+    throw new Error(error.message)
+  }
+}
+
 export function fetchQuizByName(targetQuiz : Quiz){
   return quizzes.filter(quiz => quiz.title === targetQuiz.title)[0]
 }
