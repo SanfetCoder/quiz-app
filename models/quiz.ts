@@ -1,6 +1,8 @@
 import { QUIZ_CATEGORY } from "../enum/quizCategory"
+import uuid from 'react-native-uuid';
 
 export type Quiz = {
+  id : string | Uint8Array
   title : string,
   image : NodeRequire,
   description : string,
@@ -8,8 +10,10 @@ export type Quiz = {
   questions : any[]
 }
 
+// Simulated database
 export const quizzes : Quiz[] = [
   {
+    id : uuid.v1(),
     title : "Application development",
     image : require("../assets/quiz/quiz-application-development.png"),
     description : "This is the quiz to evaluate the learners about their application development skill",
@@ -68,6 +72,7 @@ export const quizzes : Quiz[] = [
     ]
   },
   {
+    id : uuid.v1(),
     title : "Calculus",
     image : require("../assets/quiz/quiz-calculus.png"),
     description : "A beginner level of calculus topic in Mathematics",
