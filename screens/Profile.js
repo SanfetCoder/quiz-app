@@ -1,9 +1,9 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { SafeAreaView , StyleSheet, View, Text, ScrollView, Button, TouchableOpacity, TouchableWithoutFeedback, TouchableNativeFeedback} from 'react-native'
 import ProfileCard from '../components/ProfileCard'
-import { quizzes } from '../models/quiz'
 import { createStackNavigator } from '@react-navigation/stack';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+import { activities, fetchActivities } from '../models/activities';
 
 const Stack = createStackNavigator();
 
@@ -70,17 +70,28 @@ const ActivityList = () => {
       <Text style={styles.header}>
         Activities
       </Text>
-      {/* <Activities /> */}
+      <Activities />
     </View>
   )
 }
 
 const Activities = () => {
+  const [activities, setActivites] = useState(null);
+
+  useEffect(()=>{
+    const fetchData = () => {
+      const fetchedActivities = fetchActivities()
+      setActivites(fetchedActivities);
+    }
+
+    fetchData();
+  }, [])
+
   return (
     <ScrollView>
       {
-        quizzes.map(quiz => {
-          return <Text key={quiz.title}>{quiz.title}</Text>
+        activities?.map(activity => {
+          return <Text key={activity.id}>{activity.id}</Text>
         })
       }
     </ScrollView>

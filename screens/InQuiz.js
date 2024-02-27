@@ -6,6 +6,8 @@ import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityI
 import { useNavigation } from "@react-navigation/native";
 import { AppContext } from "../context/AppProvider";
 import { InQuizContext, InQuizProvider } from "../context/InQuizProvider";
+import { addActivity } from "../models/activities";
+import uuid from 'react-native-uuid';
 
 const InQuiz = () => {
   // Track whether the quiz has already started or not
@@ -144,7 +146,7 @@ const Quiz = () => {
   const { currentQuestionIndex } = useContext(InQuizContext);
   const currentQuestion = selectedQuiz.questions[currentQuestionIndex];
   const isQuizDone = currentQuestionIndex >= selectedQuiz.questions.length;
-  const navigation = useNavigation();
+
   if (isQuizDone) {
     return (
       <View
@@ -399,9 +401,31 @@ export default InQuiz;
 
 function DoneButton({}) {
   const navigation = useNavigation();
+  const { selectedQuiz } = useContext(AppContext);
+  const {currentScore} = useContext(InQuizContext);
+  function handleAddActivity(){
+    try {
+      // create new activity
+      const newActivity = {
+        id : uuid.v1(),
+        quizId : selectedQuiz.id,
+        score : currentScore,
+        maxScore : selectedQuiz.questions.length
+      }
+      // add the current activity to the database
+      addActivity(newActivity)
+      // show success message
+      alert("Saved the activity")
+      // navigate to home
+      navigation.navigate("Home")
+    } catch (error) {
+      alert(error.message)
+    }
+  }
   return (
     <TouchableOpacity onPress={() => navigation.navigate("Home")}>
       <Text
+        onPress={handleAddActivity}
         style={{
           color: "white",
           fontWeight: "600",
