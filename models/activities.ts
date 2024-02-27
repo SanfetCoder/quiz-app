@@ -13,7 +13,6 @@ export function addActivity(activity : Activity){
   try {
     // add the activity to the database
     activities = [...activities, activity]
-    console.log(activities)
   } catch (error : any) {
     throw new Error(error.message)
   }

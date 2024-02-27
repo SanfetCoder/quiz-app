@@ -11,10 +11,11 @@ import {
   TouchableNativeFeedback,
   Image,
 } from "react-native";
+import { useIsFocused } from '@react-navigation/native'
 import ProfileCard from "../components/ProfileCard";
 import { createStackNavigator } from "@react-navigation/stack";
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
-import { activities, fetchActivities } from "../models/activities";
+import { fetchActivities } from "../models/activities";
 import { fetchQuizzesById } from "../models/quiz";
 
 const Stack = createStackNavigator();
@@ -84,20 +85,24 @@ const ActivityList = () => {
 
 const Activities = () => {
   const [activities, setActivites] = useState(null);
+  const isFocused = useIsFocused();
 
+  console.log("Rendering Activities")
   useEffect(() => {
     const fetchData = () => {
       const fetchedActivities = fetchActivities();
+      
       setActivites(fetchedActivities);
     };
 
     fetchData();
-  }, []);
+  }, [isFocused]);
 
   return (
     <ScrollView
       style={{
         paddingTop: 20,
+        height : '100%',
       }}
     >
       {activities?.map((activity) => {
@@ -110,10 +115,10 @@ const Activities = () => {
 const Activity = ({ activity }) => {
   const [quizInfo, setQuizInfo] = useState(null);
 
+  console.log("Rendering quizInfo")
   useEffect(() => {
     const fetchQuizInfo = () => {
       const fetchedQuizInfo = fetchQuizzesById([activity.quizId])[0];
-      console.log(fetchedQuizInfo);
       setQuizInfo(fetchedQuizInfo);
     };
 
@@ -128,6 +133,7 @@ const Activity = ({ activity }) => {
         justifyContent: "space-between",
         width: "100%",
         height: 70,
+        marginBottom : 15
       }}
     >
       <View
