@@ -17,3 +17,12 @@ export function addActivity(activity : Activity){
     throw new Error(error.message)
   }
 }
+
+export function fetchActivities() : Activity[]{
+  try {
+    // return all activities
+    return activities
+  } catch (error) {
+    throw new Error(error.message)
+  }
+}
