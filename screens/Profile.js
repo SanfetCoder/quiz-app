@@ -91,7 +91,7 @@ const Activities = () => {
   useEffect(() => {
     const fetchData = () => {
       const fetchedActivities = fetchActivities();
-      
+      console.log(fetchedActivities)
       setActivites(fetchedActivities);
     };
 
