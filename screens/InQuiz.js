@@ -25,7 +25,11 @@ const InQuiz = () => {
           }}
         >
           <NavBar />
-          {didStart ? <Quiz /> : <Timer onFinish={()=>setDidStart(_ => true)} />}
+          {didStart ? (
+            <Quiz />
+          ) : (
+            <Timer onFinish={() => setDidStart((_) => true)} />
+          )}
         </SafeAreaView>
       </LinearGradient>
     </InQuizProvider>
@@ -46,7 +50,6 @@ const Timer = ({ onFinish }) => {
         return 0;
       });
     }, 1000);
-
 
     // Set up background animation
     const animateBackground = () => {
@@ -71,7 +74,7 @@ const Timer = ({ onFinish }) => {
 
     // Clear up funciton
     return () => {
-      clearInterval(timer)
+      clearInterval(timer);
     };
   }, [currentTime, animation, onFinish]);
 
@@ -167,17 +170,7 @@ const Quiz = () => {
           }}
           colors={["#C735B5", "#DC3757"]}
         >
-          <TouchableOpacity onPress={() => navigation.navigate("Home")}>
-            <Text
-              style={{
-                color: "white",
-                fontWeight: "600",
-                fontSize: 17,
-              }}
-            >
-              Done
-            </Text>
-          </TouchableOpacity>
+          <DoneButton />
         </LinearGradient>
       </View>
     );
@@ -403,3 +396,20 @@ const NavBar = () => {
 };
 
 export default InQuiz;
+
+function DoneButton({}) {
+  const navigation = useNavigation();
+  return (
+    <TouchableOpacity onPress={() => navigation.navigate("Home")}>
+      <Text
+        style={{
+          color: "white",
+          fontWeight: "600",
+          fontSize: 17,
+        }}
+      >
+        Done
+      </Text>
+    </TouchableOpacity>
+  );
+}
