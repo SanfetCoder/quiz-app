@@ -35,7 +35,7 @@ const ProfileMain = () => {
     <SafeAreaView style={styles.container}>
       <ProfileCard />
       <ActivityList />
-      <SignOutButton />
+      {/* <SignOutButton /> */}
     </SafeAreaView>
   );
 };
